@@ -10,46 +10,26 @@ Note: The solution set must not contain duplicate subsets.
  * @return {number[][]}
  */
 
-// ######## Visual illustration 
-//                                                 --include     --> 1,2,3
-//                           --include       --> 3 --not include --> 1,2      
-// 1 -- include       --> 2  --not include   --> 3 --include     --> 1,3
-//                                                 --not include --> 1
-//                                                 --include     --> 2,3  
-//   -- not include   --> 2  -- include      --> 3 --not include --> 2
-//                           --not include   --> 3 --include     --> 3
-//                                                 --not include --> []
-
-
-const subSets = (arrayOfNumbers) => {
-    let solution = [];
-
-    const superSetGenerate = (index, partial, solution) => {
-
-        
-    }
-
-    return solution;
-}
-
-
-
-
-// ++++++++ Recursive solution
+//input: number[] {any number}
+//out: number [][] {no: duplicates}
+//Problem type: combination, no duplicates
 const subsets = (nums) => {
-    let solution = [];
-    combine(nums, 0, [], solution)
-    return solution;
-};
+  const solution = [];
 
-const combine = (nums, index, partial, solution) => {
-    //base case is when we reach depth of size nums.length
-    if(index === nums.length){
-        solution.push(partial);
-        return
-    }
-    //not include index value
-    combine(nums,index+1, partial, solution);
-    //include index
-    combine(nums,index+1, partial.concat(nums[index]), solution);
-}
+  //decision to include the number or not include the number for each number
+  const generateCombo = (size, index, partial) => {
+      if(size === nums.length-1){
+          solution.push(partial);
+          return;
+      }
+      //exclude the number
+      generateCombo(size+1, index+1, partial);
+      //include the number 
+      generateCombo(size+1, index+1, partial.concat(nums[index]));
+  }
+  generateCombo(0,0,[]);
+  return solution;
+ };
+
+ //example: 
+ // ===> subset([1,2,3]); //[[],[3],[2],[2,3],[1],[1,3],[1,2],[1,2,3]];

@@ -1,4 +1,3 @@
-
 /*
 QUESTION 17
 
@@ -20,7 +19,10 @@ A mapping of digit to letters (just like on the telephone buttons) is given belo
  * @return {string[]}
  */
 
-// ++++++++ Recursive Solution
+ //input: string {yes: must be number 2-9}
+ //output: string[] 
+ //problemType: combination, unique combo of chars of length same to input
+
 const letterCombinations = (digits) => {
   const numDic = {
     1: ['*'],
@@ -34,24 +36,23 @@ const letterCombinations = (digits) => {
     9: ['w','x','y','z'],
   }
   const solution = [];
-  if(digits === '' || digits === undefined) return solution;
-  if(digits.length < 2) return numDic[digits];
-
-  const charComboMaker = (size, index, result) => {
+  const generateCombo = (size, index, partial) => {
     if(size === digits.length){
-      if(result){
-        solution.push(result);
+      //prefent [''] being pushed in 
+      if(partial){
+        solution.push(partial);
       }
       return;
     }
-    const charactersFromDigit = numDic[digits[index]];
-    for(let i = 0; i < charactersFromDigit.length; i++){
-      const characterLetter = charactersFromDigit[i];
-      charComboMaker(size+1, index+1, result + characterLetter);
+    let charSet = numDic[digits[index]];
+    //For each set of chars, recurs the solution
+    for(let i = 0; i < charSet.length; i++){
+      //size of strings that are generated, index indicates what set of data to work on
+      generateCombo(size+1, index+1, partial+charSet[i]);
     }
   }
-  charComboMaker(0,0,'');
   return solution;
 };
-console.log(letterCombinations('23'));
-//["ad","ae","af","bd","be","bf","cd","ce","cf"]
+
+//example:
+//===> letterCombination ('23'); // ["ad","ae","af","bd","be","bf","cd","ce","cf"] 
