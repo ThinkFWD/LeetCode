@@ -40,5 +40,4 @@ var numIslands = function(grid) {
     })
   })
   return counter;
-  
 };
