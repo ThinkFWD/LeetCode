@@ -39,8 +39,5 @@ var numIslands = function(grid) {
     }
     })
   })
-  return counter;
-  asljkdhaldkjaslkdja
-  alskdjhalsdkj
-  
+  return counter; 
 };
