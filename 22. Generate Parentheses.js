@@ -34,6 +34,33 @@ Given n pairs of parentheses, write a function to generate all combinations of w
   return solution;
  };
 
+ //call Stack: 
+ /*
+generateCombo(3,3,'')
+  generateCombo(2,3,'(')
+    generateCombo(1,3,'((')
+      generateCombo(0,3,'(((')
+       generateCOmbo(0,2,'((()')
+        generateCOmbo(0,1,'((())')
+          generateCOmbo(0,0,'((()))') ---> push to solution
+      generateCombo(1,2,'(()')
+        generateCombo(0,2,'(()(')
+          generateCombo(0,1,'(()()')
+            generateCombo(0,0,'(()())') --> push to solution
+        generateCombo(1,1,'(())')
+          generateCombo(0,1,'(())('); 
+            generateCombo(0,0,'(())()') --> push to solution
+    generageCombo(2,2,'()')
+      generateCombo(1,2,'()(')
+        generateCombo(0,2,'()((')
+          generateCombo(0,1,'()(()')
+            generateCombo(0,0,'()(())') --> push to solution
+        generateCombo(1,1,'()()')
+          generateCombo(0,1,'()()(');
+            generateCombo(0,0,'()()()') --> push to solution
+
+ */
+
  //exmaple: 
  //==> generateParenthesis(3); //["((()))","(()())","(())()","()(())","()()()"]
 
