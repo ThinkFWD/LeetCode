@@ -36,4 +36,29 @@ const generatePlayoff = (numberOfPlayers) => {
   return playoffSeeding;
  };
 
- console.log(generatePlayoff(16))
+ console.log(generatePlayoff(16));
+
+ // Alternate solution
+
+ const playoffGenerate = (teams) => {
+  let solution = [];
+  let finals = [1,2];
+  
+  const rounds = (matchup,round) => {
+    let tempRound = [];
+    round.forEach((team)=>{
+      tempRound.push(team);
+      tempRound.push(matchup+1-team);
+    });
+
+    if(matchup === teams){
+      solution = tempRound
+      return
+    }
+    rounds(matchup*2, tempRound);
+  }
+  rounds(finals.length*2,finals);
+  return solution;
+}
+
+console.log(playoffGenerate(16));
