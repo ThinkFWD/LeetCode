@@ -10,6 +10,3 @@ https://people.eecs.berkeley.edu/~rcs/research/interactive_latency.html
 
 Topics to Review
 
-///unicode vs ascii
-//divide and conqur
-//jeff dean, 10 numbers you need to know - research
