@@ -75,10 +75,8 @@ const twoSumV2 = (nums, target) => {
 //Optimal Solution
 //Time Complexity: O(N)
 //Space Complexity: O(N)
-
-const twoSumV3 = (nums, target) =>{
+const twoSumV3 = (nums, target) => {
   let dictionary = {};
-
   for (let [index, number] of nums.entries()){
     let match = (target - number);
     if(number in dictionary){
@@ -89,4 +87,4 @@ const twoSumV3 = (nums, target) =>{
   }
 }
 
-console.log(twoSumV3([0,2,3,1],5));
+console.log('Solution:', twoSumV3([0,2,3,1],5));
