@@ -44,42 +44,45 @@ function ListNode(val) {
    this.next = null;
 }
 
+let sample1 = new ListNode(2);
+sample1.next = new ListNode(4);
+sample1.next.next = new ListNode (3);
+sample1.next.next.next = new ListNode (3);
+
+let sample2 = new ListNode(5);
+sample2.next = new ListNode(6);
+sample2.next.next = new ListNode(4);
+
+
 /**
  * @param {ListNode} l1
  * @param {ListNode} l2
  * @return {ListNode}
  */
+
 const addTwoNumbers = (l1, l2) => {
-    let solution = new ListNode(null);
-    let [pointer1, pointer2, pointer3, carryOver] = [0,0,0,0];
+  let solution = new ListNode(0);
+  let temp = solution;
+  let [ pointer1 , pointer2, pointer3, carryOver] = [ l1 , l2, 0, 0 ];
 
-    while(pointer1.next !== null && pointer2.next !== null){
-      pointer1 = (l1.val !== null) ? l1.val : 0;
-      pointer2 = (l2.val !== null) ? l2.val : 0; 
+  while(pointer1 !== null || pointer2 !== null){
+    let x = (pointer1 !== null) ? pointer1.val : 0
+    let y = (pointer2 !== null) ? pointer2.val : 0
+    let sum = x + y + carryOver;
 
-      pointer3 = ((pointer1+pointer2+carryOver) > 9) ? ((pointer1+pointer2+carryOver) % 10) : pointer1+pointer2+carryOver
-      carryOver = ((pointer1+pointer2+carryOver) > 9) ? (pointer1+pointer2-pointer3) / 10 : 0;
-    
-      if(solution.val === null){
-        solution.val = pointer3;
-      }else{
-        solution.next = new ListNode(pointer3);
-      }
-      pointer1 = l1.next;
-      pointer2 = l2.next;
-      console.log('+++++++', pointer1.next ,'||',  pointer2.next)
+    pointer3 = (sum >= 10) ? sum%10 : sum;
+    carryOver = (sum >= 10) ? (sum-pointer3)/ 10 : 0;
+      
+    temp.next = new ListNode(pointer3);
+    temp = temp.next;
+
+    if (pointer1 !== null) pointer1 = pointer1.next;
+    if (pointer2 !== null) pointer2 = pointer2.next;
+  }
+    if(carryOver > 0){
+        temp.next = new ListNode(carryOver);
     }
-    pointer3 = ((pointer1.val+pointer2.val+carryOver) > 9) ? ((pointer1.val+pointer2.val+carryOver) % 10) : pointer1.val+pointer2.val+carryOver
-    solution.next = new ListNode(pointer3);
+  return solution.next;
+}
 
-    return solution;
-};
-
-let [input1, input2] = [new ListNode(1), new ListNode(9)]
-input1.next = new ListNode(2);
-input1.next.next = new ListNode(5);
-input2.next = new ListNode(6);
-
-console.log('List 1', input1)
-console.log('List 2', input2)
-console.log('solution', addTwoNumbers(input1, input2));
+console.log('solution to problem', addTwoNumbers(sample1,sample2));
