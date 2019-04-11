@@ -1,5 +1,3 @@
-
-
 /* 
 ++++++ QUESTION ++++++ 
 
@@ -24,9 +22,6 @@ Assumption:
   Reverse Order
   Node = single digit
   No leading 0 except for 0 itself
-
-Restriction:
-
 
 */
 
