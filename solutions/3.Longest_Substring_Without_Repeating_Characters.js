@@ -26,7 +26,39 @@ Note that the answer must be a substring, "pwke" is a subsequence and not a subs
 
 ++++++ ANALYSIS ++++++
 
-Assumption:
-
+Assumption: 
+No repeated substring
 
 */
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+const lengthOfLongestSubstring = (s) => {
+if(s.length === 0) return 0;
+let solution = 0;
+let refObj = {};
+let chars = [...s];
+let [startIndex, endIndex] = [0,0];
+
+for(let i = 0; i < chars.length; i++){
+  if(refObj[chars[i]] === undefined){
+    endIndex = i;
+    refObj[chars[endIndex]] = i;
+  } else {
+    if(refObj[chars[i]]>= startIndex){
+      solution = (endIndex-startIndex+1 > solution) ? endIndex-startIndex+1 : solution;
+      startIndex = refObj[chars[i]]+1;
+      refObj[chars[i]]=i;
+    }else{
+      refObj[chars[i]] = i;
+      endIndex = i;
+    }
+  }
+}
+  solution = (endIndex-startIndex+1 > solution) ? endIndex-startIndex+1 : solution;
+  return solution;
+};
+
+console.log(lengthOfLongestSubstring('bingo'));
