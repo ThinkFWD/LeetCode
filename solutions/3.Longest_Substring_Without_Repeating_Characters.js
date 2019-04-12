@@ -5,8 +5,6 @@ Given a string, find the length of the longest substring without repeating chara
 
 ++++++ EXAMPLE ++++++
 
-Example:
-
 Example 1:
 
 Input: "abcabcbb"
@@ -29,6 +27,8 @@ Note that the answer must be a substring, "pwke" is a subsequence and not a subs
 Assumption: 
 No repeated substring
 
+Time Complexity = O(N)
+Space Complexity = O(N)
 */
 
 /**
